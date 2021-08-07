@@ -5,8 +5,10 @@ import os
 def instructions():
     """
     Function to display the instructions on how to play
+    And add player name
     """
-    print("Welcome!")
+    name = str(input("enter the player name: "))
+    print("Welcome!", name)
     print("Instructions to play the game:")
     print("1. Enter row and column number to select a cell, Example \"2 3\"")
     print("2. In order to flag a mine:"
