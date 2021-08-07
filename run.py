@@ -1,5 +1,5 @@
-# Importing packages
 import random
+import os
 
 
 def instructions():
@@ -104,6 +104,13 @@ def set_values():
                 numbers[r][col] = numbers[r][col] + 1
 
 
+def clear():
+    """
+    Function for clearing the terminal
+    """
+    os.system("clear")
+
+
 if __name__ == "__main__":
     """
     Main function running the game from
@@ -116,6 +123,20 @@ if __name__ == "__main__":
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []
 
-    instructions()  # Display the instructions
-
     set_mines()
+    set_values()
+    instructions()
+    over = False  # Variable for maintaining Game Loop
+    while not over:  # The Game Loop
+        print_mines_grid()
+
+        inp = input("Enter row number followed by space"
+                    " and column number:").split()
+        if len(inp) == 2:
+            try:
+                val = list(map(int, inp))
+            except ValueError:
+                clear()
+                print("Wrong input! Please try again.")
+                instructions()
+                continue
