@@ -1,4 +1,6 @@
-# write code
+# Importing packages
+import random
+
 
 def instructions():
     """
@@ -9,6 +11,24 @@ def instructions():
     print("1. Enter row and column number to select a cell, Example \"2 3\"")
     print("2. In order to flag a mine: Enter F after row and column numbers, Example \"2 3 F\"")
     print("3. If you step on a mine, then GAME OVER")
+
+
+def set_mines():
+    """
+    Function for setting up Mines, tracking them,
+    and placing them if not already there
+    """
+    global numbers
+    global mines_no
+    global num
+    count = 0
+    while count < mines_no:
+        val = random.randint(0, num*num-1)
+        r = val // num
+        col = val % num
+        if numbers[r][col] != -1:
+            count = count + 1
+            numbers[r][col] = -1
 
 
 def print_mines_grid():
@@ -28,7 +48,7 @@ def print_mines_grid():
 
     for r in range(num):
         cell = "     "
-        if row == 0:
+        if r == 0:
             for col in range(num):
                 cell = cell + "______"
             print(cell)
@@ -38,7 +58,7 @@ def print_mines_grid():
             cell = cell + "|     "
         print(cell + "|")
 
-        cell = "  " + str(row + 1) + "  "
+        cell = "  " + str(r + 1) + "  "
         for col in range(num):
             cell = cell + "|  " + str(mine_values[r][col]) + "  "
         print(cell + "|")
@@ -67,3 +87,5 @@ if __name__ == "__main__":
     flags = []
 
     instructions()  # Display the instructions
+
+    set_mines()
