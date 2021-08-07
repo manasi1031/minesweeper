@@ -9,26 +9,9 @@ def instructions():
     print("Welcome!")
     print("Instructions to play the game:")
     print("1. Enter row and column number to select a cell, Example \"2 3\"")
-    print("2. In order to flag a mine: Enter F after row and column numbers, Example \"2 3 F\"")
+    print("2. In order to flag a mine:"
+          "Enter F after row and column numbers, Example \"2 3 F\"")
     print("3. If you step on a mine, then GAME OVER")
-
-
-def set_mines():
-    """
-    Function for setting up Mines, tracking them,
-    and placing them if not already there
-    """
-    global numbers
-    global mines_no
-    global num
-    count = 0
-    while count < mines_no:
-        val = random.randint(0, num*num-1)
-        r = val // num
-        col = val % num
-        if numbers[r][col] != -1:
-            count = count + 1
-            numbers[r][col] = -1
 
 
 def print_mines_grid():
@@ -71,7 +54,54 @@ def print_mines_grid():
     print()
 
 
-print_mines_grid()
+def set_mines():
+    """
+    Function for setting up Mines, tracking them,
+    and placing them if not already there
+    """
+    global numbers
+    global mines_no
+    global num
+    count = 0
+    while count < mines_no:
+        val = random.randint(0, num*num-1)
+        r = val // num
+        col = val % num
+        if numbers[r][col] != -1:
+            count = count + 1
+            numbers[r][col] = -1
+
+
+def set_values():
+    """
+    Function for setting up the other grid values.
+    Loop for counting each cell value.
+    Checking top, left, right, bottom and
+    top-left, top-right, bottom-left and bottom-right
+    """
+    global numbers
+    global num
+
+    for r in range(num):
+        for col in range(num):
+            if numbers[r][col] == -1:
+                continue
+            if r > 0 and numbers[r-1][col] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if r < num-1 and numbers[r+1][col] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if col > 0 and numbers[r][col-1] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if col < num-1 and numbers[r][col+1] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if r > 0 and col > 0 and numbers[r-1][col-1] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if r > 0 and col < num-1 and numbers[r-1][col+1] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if r < num-1 and col > 0 and numbers[r+1][col-1] == -1:
+                numbers[r][col] = numbers[r][col] + 1
+            if r < num-1 and col < num-1 and numbers[r+1][col+1] == -1:
+                numbers[r][col] = numbers[r][col] + 1
 
 
 if __name__ == "__main__":
