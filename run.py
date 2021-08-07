@@ -126,33 +126,46 @@ if __name__ == "__main__":
     set_mines()
     set_values()
     instructions()
+
     over = False  # Variable for maintaining Game Loop
     while not over:  # The Game Loop
+        """
+        This loop oversees the below:
+        The cell has already been flagged or not.
+        Whether the cell to be flagged is already displayed to the player.
+        The number of flags does not exceed the number of mines.
+        """
         print_mines_grid()
 
         inp = input("Enter row number followed by space"
                     " and column number:").split()
+
         if len(inp) == 2:
             try:
                 val = list(map(int, inp))
+
             except ValueError:
                 clear()
                 print("Wrong input! Please try again.")
                 instructions()
                 continue
+
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 clear()
                 print("Wrong input! Please try again.")
                 instructions()
                 continue
+
             try:
                 val = list(map(int, inp[:2]))
+
             except ValueError:
                 clear()
                 print("Wrong input! Please try again.")
                 instructions()
                 continue
+
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 clear()
                 print("Wrong input! Please try again.")
@@ -160,3 +173,26 @@ if __name__ == "__main__":
                 continue
             r = val[0]-1
             col = val[1]-1
+            if [r, col] in flags:
+                clear()
+                print("Flag already set")
+                continue
+            if mine_values[r][col] != ' ':
+                clear()
+                print("Value already known")
+                continue
+            if len(flags) < mines_no:
+                clear()
+                print("Flag set")
+                flags.append([r, col])
+                mine_values[r][col] = 'F'
+                continue
+            else:
+                clear()
+                print("Flags finished")
+                continue
+        else:
+            clear()
+            print("Wrong input! Please try again.")
+            instructions()
+            continue
