@@ -140,3 +140,23 @@ if __name__ == "__main__":
                 print("Wrong input! Please try again.")
                 instructions()
                 continue
+        elif len(inp) == 3:
+            if inp[2] != 'F' and inp[2] != 'f':
+                clear()
+                print("Wrong input! Please try again.")
+                instructions()
+                continue
+            try:
+                val = list(map(int, inp[:2]))
+            except ValueError:
+                clear()
+                print("Wrong input! Please try again.")
+                instructions()
+                continue
+            if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
+                clear()
+                print("Wrong input! Please try again.")
+                instructions()
+                continue
+            r = val[0]-1
+            col = val[1]-1
