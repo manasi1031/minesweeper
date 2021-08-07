@@ -12,3 +12,44 @@ def instructions():
 
 instructions()
 
+
+def print_mines_grid():
+    """
+    Printing the Minesweeper Layout
+    to show the framework of the game
+    """
+    global mine_values
+    global num
+    print()
+    print("\t\t\tMINESWEEPER\n")
+
+    cell = "   "
+    for i in range(num):
+        cell = cell + "     " + str(i + 1)
+    print(cell)
+
+    for r in range(num):
+        cell = "     "
+        if row == 0:
+            for col in range(num):
+                cell = cell + "______"
+            print(cell)
+
+        cell = "     "
+        for col in range(num):
+            cell = cell + "|     "
+        print(cell + "|")
+
+        cell = "  " + str(row + 1) + "  "
+        for col in range(num):
+            cell = cell + "|  " + str(mine_values[r][col]) + "  "
+        print(cell + "|")
+
+        cell = "     "
+        for col in range(num):
+            cell = cell + "|_____"
+        print(cell + '|')
+
+    print()
+
+print_mines_grid()
