@@ -10,8 +10,6 @@ def instructions():
     print("2. In order to flag a mine: Enter F after row and column numbers, Example \"2 3 F\"")
     print("3. If you step on a mine, then GAME OVER")
 
-instructions()
-
 
 def print_mines_grid():
     """
@@ -52,4 +50,20 @@ def print_mines_grid():
 
     print()
 
+
 print_mines_grid()
+
+
+if __name__ == "__main__":
+    """
+    Main function running the game from
+    instructions until end game
+    """
+    num = 8
+    mines_no = 8
+
+    numbers = [[0 for y in range(num)] for x in range(num)]
+    mine_values = [[' ' for y in range(num)] for x in range(num)]
+    flags = []
+
+    instructions()  # Display the instructions
