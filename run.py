@@ -253,3 +253,24 @@ if __name__ == "__main__":
             print("You landed on a mine! GAME OVER!!!!!")
             over = True
             continue
+
+
+def end_game():
+    """
+    User can chose whether to restart the game
+    or to quit the program.
+    """
+    while True:
+        try:
+            game_end_input = int(raw_input("1 to play again, 2 to quit: "))
+            if game_end_input == 1:
+                set_mines()
+                set_values()
+                instructions()
+            if game_end_input == 2:
+                exit()
+                print("Please enter 1 or 2.")
+        except ValueError:
+            print("")
+            print("Please enter 1 or 2.")
+            print("")
