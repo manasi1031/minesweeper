@@ -113,6 +113,21 @@ def clear():
     os.system("clear")
 
 
+def show_mines():
+    """
+    This function shows the mines if player has landed
+    on a cell with mines.
+    """
+    global mine_values
+    global numbers
+    global num
+
+    for r in range(num):
+        for col in range(num):
+            if numbers[r][col] == -1:
+                mine_values[r][col] = 'M'
+
+
 if __name__ == "__main__":
     """
     Main function running the game from
@@ -201,7 +216,7 @@ if __name__ == "__main__":
 
         if numbers[r][col] == -1:  # If mine landing - Game over
             mine_values[r][col] = 'M'
-
+            show_mines()
             print_mines_grid()
             print("You landed on a mine! GAME OVER!!!!!")
             over = True
