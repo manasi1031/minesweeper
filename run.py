@@ -181,7 +181,7 @@ if __name__ == "__main__":
                 continue
             if mine_values[r][col] != ' ':
                 clear()
-                print("Value already known")
+                print("Value already displayed!")
                 continue
             if len(flags) < mines_no:
                 clear()
@@ -197,4 +197,12 @@ if __name__ == "__main__":
             clear()
             print("Wrong input! Please try again.")
             instructions()
+            continue
+
+        if numbers[r][col] == -1:  # If mine landing - Game over
+            mine_values[r][col] = 'M'
+
+            print_mines_grid()
+            print("You landed on a mine! GAME OVER!!!!!")
+            over = True
             continue
