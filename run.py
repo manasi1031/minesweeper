@@ -106,6 +106,28 @@ def set_values():
                 numbers[r][col] = numbers[r][col] + 1
 
 
+def end_game():
+    """
+    User can chose whether to restart the game
+    or to quit the program.
+    """
+    while True:
+        try:
+            game_end_input = int(input("Please enter 1 "
+                                       "to play again or 2 to quit: \n"))
+            if game_end_input == 1:
+                print("You chose to play again!!!")
+                set_mines()
+                set_values()
+                instructions()
+            if game_end_input == 2:
+                print("You chose to exit the game!!!")
+                exit()
+        except ValueError:
+            print("Wrong choice!. Please enter 1 to play again or 2 to quit")
+            game_end_input
+
+
 def adjacent_cells(r, col):
     """
     Recursive function to display all
@@ -205,71 +227,69 @@ if __name__ == "__main__":
         print_mines_grid()
 
         inp = input("Enter row number followed by space"
-                    " and column number:").split()
-
+                    " and column number and space again with "
+                    "F/f if flagging a mine:").split()
         if len(inp) == 2:
             try:
                 val = list(map(int, inp))
-
             except ValueError:
-                clear()
                 print("Wrong input! Please try again.")
-                instructions()
+                print(inp)
                 continue
-
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
-                clear()
                 print("Wrong input! Please try again.")
-                instructions()
+                print(inp)
                 continue
-
             try:
                 val = list(map(int, inp[:2]))
-
             except ValueError:
-                clear()
                 print("Wrong input! Please try again.")
-                instructions()
+                print(inp)
                 continue
-
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
-                clear()
                 print("Wrong input! Please try again.")
-                instructions()
+                print(inp)
                 continue
             r = val[0]-1
             col = val[1]-1
             if [r, col] in flags:
-                clear()
                 print("Flag already set")
+                print(inp)
                 continue
             if mine_values[r][col] != ' ':
-                clear()
                 print("Value already displayed!")
+                print(inp)
                 continue
             if len(flags) < mines_no:
-                clear()
                 print("Flag set")
                 flags.append([r, col])
                 mine_values[r][col] = 'F'
+                print(inp)
                 continue
             else:
-                clear()
                 print("Flags finished")
+                print(inp)
                 continue
         else:
-            clear()
             print("Wrong input! Please try again.")
-            instructions()
+            print(inp)
             continue
-
-        if numbers[r][col] == -1:  # If mine landing - Game over
+        if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
+            print("Wrong Input! Please try again.")
+            print(inp)
+            continue
+        r = val[0]-1
+        col = val[1]-1
+        if [r, col] in flags:
+            flags.remove([r, col])
+        if numbers[r][col] == -1:
             mine_values[r][col] = 'M'
             show_mines()
             print_mines_grid()
             print("You landed on a mine! GAME OVER!!!!!")
             over = True
+            end_game()
             continue
         elif numbers[r][col] == 0:
             visit = []
@@ -277,31 +297,11 @@ if __name__ == "__main__":
             adjacent_cells(r, col)
         else:
             mine_values[r][col] = numbers[r][col]
-        if(game_check_finish()):  # Check for game completion
+        if(game_check_finish()):
             show_mines()
             print_mines_grid()
             print("Congratulations!!! YOU WIN")
             over = True
+            end_game()
             continue
         clear()
-
-
-def end_game():
-    """
-    User can chose whether to restart the game
-    or to quit the program.
-    """
-    while True:
-        try:
-            game_end_input = int(input("1 to play again, 2 to quit: "))
-            if game_end_input == 1:
-                set_mines()
-                set_values()
-                instructions()
-            if game_end_input == 2:
-                exit()
-                print("Please enter 1 or 2.")
-        except ValueError:
-            print("")
-            print("Please enter 1 or 2.")
-            print("")
