@@ -160,6 +160,24 @@ def show_mines():
                 mine_values[r][col] = 'M'
 
 
+def game_check_finish():
+    """
+    Function to check for completion of the game
+    """
+    global mine_values
+    global num
+    global mines_no
+    count = 0
+    for r in range(num):
+        for col in range(num):
+            if mine_values[r][col] != ' ' and mine_values[r][col] != 'F':
+                count = count + 1
+    if count == num * num - mines_no:
+        return True
+    else:
+        return False
+
+
 if __name__ == "__main__":
     """
     Main function running the game from
@@ -253,6 +271,19 @@ if __name__ == "__main__":
             print("You landed on a mine! GAME OVER!!!!!")
             over = True
             continue
+        elif numbers[r][col] == 0:
+            visit = []
+            mine_values[r][col] = '0'
+            adjacent_cells(r, col)
+        else:
+            mine_values[r][col] = numbers[r][col]
+        if(game_check_finish()):  # Check for game completion
+            show_mines()
+            print_mines_grid()
+            print("Congratulations!!! YOU WIN")
+            over = True
+            continue
+        clear()
 
 
 def end_game():
@@ -262,7 +293,7 @@ def end_game():
     """
     while True:
         try:
-            game_end_input = int(raw_input("1 to play again, 2 to quit: "))
+            game_end_input = int(input("1 to play again, 2 to quit: "))
             if game_end_input == 1:
                 set_mines()
                 set_values()
