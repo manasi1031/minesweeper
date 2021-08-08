@@ -106,6 +106,38 @@ def set_values():
                 numbers[r][col] = numbers[r][col] + 1
 
 
+def adjacent_cells(r, col):
+    """
+    Recursive function to display all
+    zero-valued adjacent cells around mines
+    """
+    global mine_values
+    global numbers
+    global visit
+    if [r, col] not in visit:
+        visit.append([r, col])
+        if numbers[r][col] == 0:
+            mine_values[r][col] = numbers[r][col]
+            if r > 0:
+                adjacent_cells(r-1, col)
+            if r < num-1:
+                adjacent_cells(r+1, col)
+            if col > 0:
+                adjacent_cells(r, col-1)
+            if col < num-1:
+                adjacent_cells(r, col+1)
+            if r > 0 and col > 0:
+                adjacent_cells(r-1, col-1)
+            if r > 0 and col < num-1:
+                adjacent_cells(r-1, col+1)
+            if r < num-1 and col > 0:
+                adjacent_cells(r+1, col-1)
+            if r < num-1 and col < num-1:
+                adjacent_cells(r+1, col+1)
+        if numbers[r][col] != 0:
+            mine_values[r][col] = numbers[r][col]
+
+
 def clear():
     """
     Function for clearing the terminal
