@@ -1,5 +1,6 @@
 import random
 import os
+import time
 
 
 def instructions():
@@ -9,11 +10,13 @@ def instructions():
     """
     name = str(input("enter the player name: "))
     print("Welcome!", name)
+    time.sleep(3)
     print("Instructions to play the game:")
     print("1. Enter row and column number to select a cell, Example \"2 3\"")
     print("2. In order to flag a mine:"
           "Enter F after row and column numbers, Example \"2 3 F\"")
     print("3. If you step on a mine, then GAME OVER")
+    time.sleep(5)
 
 
 def print_mines_grid():
@@ -212,9 +215,9 @@ if __name__ == "__main__":
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []
 
+    instructions()
     set_mines()
     set_values()
-    instructions()
 
     over = False  # Variable for maintaining Game Loop
     while not over:  # The Game Loop
@@ -234,50 +237,50 @@ if __name__ == "__main__":
                 val = list(map(int, inp))
             except ValueError:
                 print("Wrong input! Please try again.")
-                print(inp)
+                time.sleep(2)
                 continue
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 print("Wrong input! Please try again.")
-                print(inp)
+                time.sleep(2)
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
                 print("Wrong input! Please try again.")
-                print(inp)
+                time.sleep(2)
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 print("Wrong input! Please try again.")
-                print(inp)
+                time.sleep(2)
                 continue
             r = val[0]-1
             col = val[1]-1
             if [r, col] in flags:
                 print("Flag already set")
-                print(inp)
+                time.sleep(2)
                 continue
             if mine_values[r][col] != ' ':
                 print("Value already displayed!")
-                print(inp)
+                time.sleep(2)
                 continue
             if len(flags) < mines_no:
                 print("Flag set")
                 flags.append([r, col])
                 mine_values[r][col] = 'F'
-                print(inp)
+                time.sleep(2)
                 continue
             else:
                 print("Flags finished")
-                print(inp)
+                time.sleep(2)
                 continue
         else:
             print("Wrong input! Please try again.")
-            print(inp)
+            time.sleep(2)
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
             print("Wrong Input! Please try again.")
-            print(inp)
+            time.sleep(2)
             continue
         r = val[0]-1
         col = val[1]-1
