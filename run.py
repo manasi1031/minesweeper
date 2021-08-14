@@ -1,20 +1,25 @@
 # Import packages
 import random
 import os
+import sys
 import time
 from termcolor import cprint
 
 
-def instructions():
+def player_name():
     """
-    Function to display the instructions on how to play
     And add player name
     """
     name = str(input("Enter the player name: "))
     print("Welcome!", name)
     print("\n")
-    time.sleep(3)
+    time.sleep(2)
 
+
+def instructions():
+    """
+    Function to display the instructions on how to play
+    """
     cprint("Instructions to play the game:\n", "green")
     cprint("1. Enter row and column number to select a cell, Example \"2 3\"")
     print("2. In order to flag a mine:"
@@ -138,13 +143,12 @@ def end_game():
                                        "to play again or 2 to quit: \n"))
             if game_end_input == 1:
                 cprint("You chose to play again!!!", "cyan")
-                time.sleep(3)
-                set_mines()
-                set_values()
-                instructions()
+                time.sleep(2)
+                os.system('run.py')
+                continue
             if game_end_input == 2:
                 cprint("You chose to exit the game!!!", "cyan")
-                time.sleep(1)
+                time.sleep(2)
                 exit()
         except ValueError:
             cprint("Wrong choice!. Please enter 1 to play or 2 to quit", "red")
@@ -234,8 +238,9 @@ def game_check_finish():
 
 if __name__ == "__main__":
     """
-    Main function running the game from
-    instructions until end game
+    Main module running the game from
+    instructions until end game.
+    Material online suggests this module is ideal.
     """
     num = 8  # Grid size
     mines_no = 8  # Number of mines
@@ -245,6 +250,7 @@ if __name__ == "__main__":
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []  # Positions of flag
 
+    player_name()
     instructions()
     set_mines()
     set_values()
@@ -269,22 +275,26 @@ if __name__ == "__main__":
                 val = list(map(int, inp))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
         # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
             # Get row and column numbers
@@ -293,11 +303,13 @@ if __name__ == "__main__":
             # If a cell has been flagged already
             if [r, col] in flags:
                 cprint("Flag already set", "red")
+                instructions()
                 time.sleep(2)
                 continue
             # If a cell has been displayed already
             if mine_values[r][col] != ' ':
                 cprint("Value already displayed!", "red")
+                instructions()
                 time.sleep(2)
                 continue
             # Check the number for flags
@@ -315,10 +327,12 @@ if __name__ == "__main__":
                 continue
         else:
             cprint("Wrong input! Please try again.", "red")
+            instructions()
             time.sleep(2)
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
             cprint("Wrong Input! Please try again.", "red")
+            instructions()
             time.sleep(2)
             continue
         r = val[0]-1
@@ -352,3 +366,4 @@ if __name__ == "__main__":
             end_game()
             continue
         clear()
+
