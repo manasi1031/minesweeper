@@ -2,6 +2,7 @@
 import random
 import os
 import time
+from termcolor import cprint
 
 
 def instructions():
@@ -9,21 +10,17 @@ def instructions():
     Function to display the instructions on how to play
     And add player name
     """
-    name = str(input("enter the player name: "))
+    name = str(input("Enter the player name: "))
     print("Welcome!", name)
     print("\n")
     time.sleep(3)
 
-    print("Instructions to play the game:\n")
-    print("1. Enter row and column number to select a cell, Example \"2 3\"")
+    cprint("Instructions to play the game:\n", "green")
+    cprint("1. Enter row and column number to select a cell, Example \"2 3\"")
     print("2. In order to flag a mine:"
           "Enter F after row and column numbers, Example \"2 3 F\"")
     print("3. If you step on a mine, then GAME OVER\n")
     time.sleep(5)
-
-    print("Enter 1 to read Instructions again or 2 to play the game:")
-    print("\n")
-    time.sleep(3)
 
 
 def print_mines_grid():
@@ -34,7 +31,7 @@ def print_mines_grid():
     global mine_values
     global num
     print()
-    print("\t\t\tMINESWEEPER\n")
+    cprint("\t\t\tMINESWEEPER\n", "cyan")
 
     cell = "   "
     for i in range(num):
@@ -140,17 +137,17 @@ def end_game():
             game_end_input = int(input("Please enter 1 "
                                        "to play again or 2 to quit: \n"))
             if game_end_input == 1:
-                print("You chose to play again!!!")
+                cprint("You chose to play again!!!", "cyan")
                 time.sleep(3)
                 set_mines()
                 set_values()
                 instructions()
             if game_end_input == 2:
-                print("You chose to exit the game!!!")
+                cprint("You chose to exit the game!!!", "cyan")
                 time.sleep(1)
                 exit()
         except ValueError:
-            print("Wrong choice!. Please enter 1 to play again or 2 to quit")
+            cprint("Wrong choice!. Please enter 1 to play or 2 to quit", "red")
             game_end_input
 
 
@@ -248,9 +245,9 @@ if __name__ == "__main__":
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []  # Positions of flag
 
-    instructions()  # Display instructions function
-    set_mines()  # Set mines function
-    set_values()  # Set values function
+    instructions()
+    set_mines()
+    set_values()
 
     over = False  # Variable for maintaining Game Loop
     while not over:  # The Game Loop
@@ -264,30 +261,30 @@ if __name__ == "__main__":
 
         # Input from user row & column & // flag
         inp = input("Enter row number followed by space"
-                    " and column number\n and space again with "
+                    " and column number and space again with "
                     "F/f if flagging a mine:").split()
         # Standard input check
         if len(inp) == 2:
             try:
                 val = list(map(int, inp))
             except ValueError:
-                print("Wrong input! Please try again.")
+                cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
                 continue
         # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
-                print("Wrong input! Please try again.")
+                cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
-                print("Wrong input! Please try again.")
+                cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
-                print("Wrong input! Please try again.")
+                cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
                 continue
             # Get row and column numbers
@@ -295,17 +292,17 @@ if __name__ == "__main__":
             col = val[1]-1
             # If a cell has been flagged already
             if [r, col] in flags:
-                print("Flag already set")
+                cprint("Flag already set", "red")
                 time.sleep(2)
                 continue
             # If a cell has been displayed already
             if mine_values[r][col] != ' ':
-                print("Value already displayed!")
+                cprint("Value already displayed!", "red")
                 time.sleep(2)
                 continue
             # Check the number for flags
             if len(flags) < mines_no:
-                print("Flag set")
+                cprint("Flag set", "red")
                 # Add flag to list
                 flags.append([r, col])
                 # Set flag to display
@@ -313,15 +310,15 @@ if __name__ == "__main__":
                 time.sleep(2)
                 continue
             else:
-                print("Flags finished")
+                cprint("Flags finished", "red")
                 time.sleep(2)
                 continue
         else:
-            print("Wrong input! Please try again.")
+            cprint("Wrong input! Please try again.", "red")
             time.sleep(2)
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
-            print("Wrong Input! Please try again.")
+            cprint("Wrong Input! Please try again.", "red")
             time.sleep(2)
             continue
         r = val[0]-1
@@ -334,7 +331,7 @@ if __name__ == "__main__":
             mine_values[r][col] = 'M'
             show_mines()
             print_mines_grid()
-            print("You landed on a mine! GAME OVER!!!!!")
+            cprint("You landed on a mine! GAME OVER!!!!!", "red")
             over = True
             end_game()
             continue
@@ -350,7 +347,7 @@ if __name__ == "__main__":
         if(game_check_finish()):
             show_mines()
             print_mines_grid()
-            print("Congratulations!!! YOU WIN")
+            cprint("Congratulations!!! YOU WIN", "green")
             over = True
             end_game()
             continue
