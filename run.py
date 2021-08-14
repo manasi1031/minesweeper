@@ -1,3 +1,4 @@
+# Import packages
 import random
 import os
 import time
@@ -10,13 +11,19 @@ def instructions():
     """
     name = str(input("enter the player name: "))
     print("Welcome!", name)
+    print("\n")
     time.sleep(3)
-    print("Instructions to play the game:")
+
+    print("Instructions to play the game:\n")
     print("1. Enter row and column number to select a cell, Example \"2 3\"")
     print("2. In order to flag a mine:"
           "Enter F after row and column numbers, Example \"2 3 F\"")
-    print("3. If you step on a mine, then GAME OVER")
+    print("3. If you step on a mine, then GAME OVER\n")
     time.sleep(5)
+
+    print("Enter 1 to read Instructions again or 2 to play the game:")
+    print("\n")
+    time.sleep(3)
 
 
 def print_mines_grid():
@@ -67,11 +74,15 @@ def set_mines():
     global numbers
     global mines_no
     global num
+    # Track mines already set up
     count = 0
     while count < mines_no:
+        # Random number from all grid positions
         val = random.randint(0, num*num-1)
+        # Generate row and column from number
         r = val // num
         col = val % num
+        # Place mine if not placed
         if numbers[r][col] != -1:
             count = count + 1
             numbers[r][col] = -1
@@ -87,24 +98,34 @@ def set_values():
     global numbers
     global num
 
+    # Loop for counting cell values
     for r in range(num):
         for col in range(num):
+            # If it has a mine, then skip
             if numbers[r][col] == -1:
                 continue
+            # check up
             if r > 0 and numbers[r-1][col] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check down
             if r < num-1 and numbers[r+1][col] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check left
             if col > 0 and numbers[r][col-1] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check right
             if col < num-1 and numbers[r][col+1] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check top-left
             if r > 0 and col > 0 and numbers[r-1][col-1] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check top-right
             if r > 0 and col < num-1 and numbers[r-1][col+1] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check bottom-left
             if r < num-1 and col > 0 and numbers[r+1][col-1] == -1:
                 numbers[r][col] = numbers[r][col] + 1
+            # check bottom-right
             if r < num-1 and col < num-1 and numbers[r+1][col+1] == -1:
                 numbers[r][col] = numbers[r][col] + 1
 
@@ -120,11 +141,13 @@ def end_game():
                                        "to play again or 2 to quit: \n"))
             if game_end_input == 1:
                 print("You chose to play again!!!")
+                time.sleep(3)
                 set_mines()
                 set_values()
                 instructions()
             if game_end_input == 2:
                 print("You chose to exit the game!!!")
+                time.sleep(1)
                 exit()
         except ValueError:
             print("Wrong choice!. Please enter 1 to play again or 2 to quit")
@@ -139,10 +162,15 @@ def adjacent_cells(r, col):
     global mine_values
     global numbers
     global visit
+    # If the cell has not been visited
     if [r, col] not in visit:
+        # Mark visited cell
         visit.append([r, col])
+        # Zero valued cell
         if numbers[r][col] == 0:
+            # Display to user
             mine_values[r][col] = numbers[r][col]
+            # Recursive calls for adjacent cells
             if r > 0:
                 adjacent_cells(r-1, col)
             if r < num-1:
@@ -159,6 +187,7 @@ def adjacent_cells(r, col):
                 adjacent_cells(r+1, col-1)
             if r < num-1 and col < num-1:
                 adjacent_cells(r+1, col+1)
+        # If not a zero valued cell
         if numbers[r][col] != 0:
             mine_values[r][col] = numbers[r][col]
 
@@ -192,11 +221,14 @@ def game_check_finish():
     global mine_values
     global num
     global mines_no
+    # Count all numbered values
     count = 0
+    # Check each cell in grid as a loop
     for r in range(num):
         for col in range(num):
             if mine_values[r][col] != ' ' and mine_values[r][col] != 'F':
                 count = count + 1
+    # Count comparison
     if count == num * num - mines_no:
         return True
     else:
@@ -208,16 +240,17 @@ if __name__ == "__main__":
     Main function running the game from
     instructions until end game
     """
-    num = 8
-    mines_no = 8
+    num = 8  # Grid size
+    mines_no = 8  # Number of mines
 
+    # Actual values of grid
     numbers = [[0 for y in range(num)] for x in range(num)]
     mine_values = [[' ' for y in range(num)] for x in range(num)]
-    flags = []
+    flags = []  # Positions of flag
 
-    instructions()
-    set_mines()
-    set_values()
+    instructions()  # Display instructions function
+    set_mines()  # Set mines function
+    set_values()  # Set values function
 
     over = False  # Variable for maintaining Game Loop
     while not over:  # The Game Loop
@@ -229,9 +262,11 @@ if __name__ == "__main__":
         """
         print_mines_grid()
 
+        # Input from user row & column & // flag
         inp = input("Enter row number followed by space"
-                    " and column number and space again with "
+                    " and column number\n and space again with "
                     "F/f if flagging a mine:").split()
+        # Standard input check
         if len(inp) == 2:
             try:
                 val = list(map(int, inp))
@@ -239,6 +274,7 @@ if __name__ == "__main__":
                 print("Wrong input! Please try again.")
                 time.sleep(2)
                 continue
+        # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 print("Wrong input! Please try again.")
@@ -254,19 +290,25 @@ if __name__ == "__main__":
                 print("Wrong input! Please try again.")
                 time.sleep(2)
                 continue
+            # Get row and column numbers
             r = val[0]-1
             col = val[1]-1
+            # If a cell has been flagged already
             if [r, col] in flags:
                 print("Flag already set")
                 time.sleep(2)
                 continue
+            # If a cell has been displayed already
             if mine_values[r][col] != ' ':
                 print("Value already displayed!")
                 time.sleep(2)
                 continue
+            # Check the number for flags
             if len(flags) < mines_no:
                 print("Flag set")
+                # Add flag to list
                 flags.append([r, col])
+                # Set flag to display
                 mine_values[r][col] = 'F'
                 time.sleep(2)
                 continue
@@ -284,8 +326,10 @@ if __name__ == "__main__":
             continue
         r = val[0]-1
         col = val[1]-1
+        # Unflag cell if already flagged
         if [r, col] in flags:
             flags.remove([r, col])
+        # Game over is landed on mine
         if numbers[r][col] == -1:
             mine_values[r][col] = 'M'
             show_mines()
@@ -294,12 +338,15 @@ if __name__ == "__main__":
             over = True
             end_game()
             continue
+        # If landed on a mine with zero in adjacent cells
         elif numbers[r][col] == 0:
             visit = []
             mine_values[r][col] = '0'
             adjacent_cells(r, col)
+        # if even 1 mine in adjacent cell
         else:
             mine_values[r][col] = numbers[r][col]
+        # check for game completion or finish
         if(game_check_finish()):
             show_mines()
             print_mines_grid()
