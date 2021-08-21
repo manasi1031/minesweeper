@@ -1,7 +1,6 @@
 # Import packages
 import random
 import os
-import sys
 import time
 from termcolor import cprint
 
@@ -11,7 +10,7 @@ def player_name():
     And add player name
     """
     name = str(input("Enter the player name: "))
-    print("Welcome!", name)
+    print("Welcome!", name, "Let's play Minesweeper!")
     print("\n")
     time.sleep(2)
 
@@ -144,8 +143,7 @@ def end_game():
             if game_end_input == 1:
                 cprint("You chose to play again!!!", "cyan")
                 time.sleep(2)
-                os.system('run.py')
-                continue
+                play_game()
             if game_end_input == 2:
                 cprint("You chose to exit the game!!!", "cyan")
                 time.sleep(2)
@@ -236,16 +234,17 @@ def game_check_finish():
         return False
 
 
-if __name__ == "__main__":
+def play_game():
     """
     Main module running the game from
     instructions until end game.
-    Material online suggests this module is ideal.
     """
-    num = 8  # Grid size
-    mines_no = 8  # Number of mines
+    global num = 8  # Grid size
+    global mines_no = 8  # Number of mines
 
     # Actual values of grid
+    num = 8
+    mines_no = 8
     numbers = [[0 for y in range(num)] for x in range(num)]
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []  # Positions of flag
@@ -367,3 +366,5 @@ if __name__ == "__main__":
             continue
         clear()
 
+
+play_game()
