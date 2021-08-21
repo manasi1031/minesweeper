@@ -136,7 +136,13 @@ ADD CHART HERE
 
 ### Solved Bugs
 
-- 
+1. No error messages popping up when a wrong input is given for the game. I used the time.sleep function after the message and that actually showed the messages before the next grid came up. It was showing before but as there was no pause, I was unable to see it.
+
+2. Terminal syntax error for global values of all variables in the play_game function. I had also defined 2 global values with some data. This was what resulted in the error as below. 
+
+![terminal syntax error](https://github.com/manasi1031/minesweeper/blob/master/assets/images/terminal-syntaxerror.jpg)
+
+To avoid this error, I removed the values defined, as I had already defined them later again and just added the list of my global variables required. This stopped the error and played the game.
 
 ### Remaining Bugs
 
