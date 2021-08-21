@@ -19,6 +19,24 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("minesweeper")
 
 
+def player_name():
+    """
+    And add player name
+    """
+    name = str(input("Enter the player name: "))
+    print("Welcome!", name, "Let's play Minesweeper!")
+    print("\n")
+    time.sleep(2)
+
+
+def update_sheet(data):
+    """
+    Update worksheet with new players name
+    """
+    players_name = SHEET.worksheet("players")
+    players_name.append_row([data])
+
+    
 def instructions():
     """
     Function to display the instructions on how to play
