@@ -19,12 +19,15 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("minesweeper")
 
 
+name = [""]
+
+
 def players_name():
     """
     And add player name
     """
     name = str(input("Enter the player name: "))
-    print("Welcome!", name, "Let's play Minesweeper!")
+    print("Welcome!", name, ". Let's play Minesweeper!")
     print("\n")
     time.sleep(2)
 
@@ -34,15 +37,15 @@ def update_sheet(data):
     Update worksheet with new players name
     """
     players_name = SHEET.worksheet("players")
-    players_name.append_row([data])
+    players_name.append_row(data)
 
 
 def get_number():
     """
     Get the last row in the sheet
     """
-    number = len(SHEET.worksheet("players").get_all_values()) - 1
-    print(f"You are player number: {number}. Let's play!")
+    numb = len(SHEET.worksheet("players").get_all_values()) - 1
+    print(f"You are player number: {numb}. Let's play!")
     print("\n")
     time.sleep(1)
 
@@ -272,8 +275,11 @@ def play_game():
     Main module running the game from
     instructions until end game.
     """
-    global num = 8  # Grid size
-    global mines_no = 8  # Number of mines
+    global num
+    global mines_no
+    global numbers
+    global visit
+    global mine_values
 
     # Actual values of grid
     num = 8
@@ -283,7 +289,7 @@ def play_game():
     flags = []  # Positions of flag
 
     players_name()
-    update_sheet(data)
+    update_sheet(name)
     get_number()
     instructions()
     set_mines()
@@ -309,26 +315,22 @@ def play_game():
                 val = list(map(int, inp))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
-                instructions()
                 time.sleep(2)
                 continue
         # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 cprint("Wrong input! Please try again.", "red")
-                instructions()
                 time.sleep(2)
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
-                instructions()
                 time.sleep(2)
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 cprint("Wrong input! Please try again.", "red")
-                instructions()
                 time.sleep(2)
                 continue
             # Get row and column numbers
@@ -337,13 +339,11 @@ def play_game():
             # If a cell has been flagged already
             if [r, col] in flags:
                 cprint("Flag already set", "red")
-                instructions()
                 time.sleep(2)
                 continue
             # If a cell has been displayed already
             if mine_values[r][col] != ' ':
                 cprint("Value already displayed!", "red")
-                instructions()
                 time.sleep(2)
                 continue
             # Check the number for flags
@@ -361,12 +361,10 @@ def play_game():
                 continue
         else:
             cprint("Wrong input! Please try again.", "red")
-            instructions()
             time.sleep(2)
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
             cprint("Wrong Input! Please try again.", "red")
-            instructions()
             time.sleep(2)
             continue
         r = val[0]-1
