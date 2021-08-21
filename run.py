@@ -36,7 +36,17 @@ def update_sheet(data):
     players_name = SHEET.worksheet("players")
     players_name.append_row([data])
 
-    
+
+def get_number():
+    """
+    Get the last row in the sheet
+    """
+    number = len(SHEET.worksheet("players").get_all_values()) - 1
+    print(f"You are player number: {number}. Let's play!")
+    print("\n")
+    time.sleep(1)
+
+
 def instructions():
     """
     Function to display the instructions on how to play
