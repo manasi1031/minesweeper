@@ -4,7 +4,7 @@ import os
 import time
 from termcolor import cprint
 import gspread
-from google.oauth2.service_account import Credentials
+from google.oauth2.service_account import Credentials
 
 
 SCOPE = [
@@ -13,17 +13,17 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file("creds.json")
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open("minesweeper")
+CREDS = Credentials.from_service_account_file("creds.json")
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open("minesweeper")
 
 
-def player_name():
+def players_name():
     """
     And add player name
     """
-    name = str(input("Enter the player name: "))
+    name = str(input("Enter the player name: "))
     print("Welcome!", name, "Let's play Minesweeper!")
     print("\n")
     time.sleep(2)
@@ -282,7 +282,7 @@ def play_game():
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []  # Positions of flag
 
-    player_name()
+    players_name()
     update_sheet(data)
     get_number()
     instructions()

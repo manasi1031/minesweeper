@@ -2,7 +2,7 @@
 ------
 
 # MINESWEEPER
-The link is old and needs to change to new
+CHANGE
 ![Mockup Image](https://github.com/manasi1031/Mighty-quest/blob/master/assets/images/mockup.jpg)
 
 ## Purpose:
@@ -43,7 +43,9 @@ If you have never played before please see the link to read some information abo
 
 ## Information to Play
 ---
+
 ### How to play:
+
 Instructions to play the game on the actual game:
 1. Each board has 8 rows and 8 columns and 8 mines
 2. Enter row and column number to select a cell, Example \"2 3\"
@@ -51,6 +53,7 @@ Instructions to play the game on the actual game:
 4. If you step on a mine, then GAME OVER
 
 ### Detailed Instructions:
+
 - You are presented with a board of unmarked cells. 
 - Some cells contain mines (bombs), others don't.
 - Each board has 8 rows and 8 columns and 8 mines.
@@ -72,12 +75,15 @@ Instructions to play the game on the actual game:
 
 ## Features
 ---
+
 ### Existing Features:
 
 - Random grid:
     - The location of mines change with every game.
     - The player cannot see this location until end of game.
+
 - Accepts users input for name and selecting cell and or mine choice
+
 - Input validation and error-checking:
     - You must enter numbers for the rows and columns
     - You must enter F or f for the flag
@@ -85,6 +91,7 @@ Instructions to play the game on the actual game:
     - You cannot enter the same input again
 
 ### Future features:
+
 - Time limit
 - Level of difficulty – Easy, Medium and Hard.
 - Maintain names of users who have won the game
@@ -94,6 +101,7 @@ Instructions to play the game on the actual game:
 
 ## Technologies used:
 ---
+
 ### Programming Languages:
 - Python
 
