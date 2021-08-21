@@ -5,25 +5,17 @@ import time
 from termcolor import cprint
 
 
-def player_name():
-    """
-    And add player name
-    """
-    name = str(input("Enter the player name: "))
-    print("Welcome!", name, "Let's play Minesweeper!")
-    print("\n")
-    time.sleep(2)
-
 
 def instructions():
     """
     Function to display the instructions on how to play
     """
     cprint("Instructions to play the game:\n", "green")
-    cprint("1. Enter row and column number to select a cell, Example \"2 3\"")
-    print("2. In order to flag a mine:"
+    print("1.Each board has 8 rows and 8 columns and 8 mines\n")
+    cprint("2. Enter row and column number to select a cell, Example \"2 3\"")
+    print("3. In order to flag a mine:"
           "Enter F after row and column numbers, Example \"2 3 F\"")
-    print("3. If you step on a mine, then GAME OVER\n")
+    print("4. If you step on a mine, then GAME OVER\n")
     time.sleep(5)
 
 
@@ -250,6 +242,8 @@ def play_game():
     flags = []  # Positions of flag
 
     player_name()
+    update_sheet(data)
+    get_number()
     instructions()
     set_mines()
     set_values()

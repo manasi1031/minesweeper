@@ -44,14 +44,21 @@ If you have never played before please see the link to read some information abo
 ## Information to Play
 ---
 ### How to play:
-- You are presented with a board of unmarked cells. Some cells contain mines (bombs), others don't.
+Instructions to play the game on the actual game:
+1. Each board has 8 rows and 8 columns and 8 mines
+2. Enter row and column number to select a cell, Example \"2 3\"
+3. In order to flag a mine: Enter F after row and column numbers, Example \"2 3 F\"
+4. If you step on a mine, then GAME OVER
+
+### Detailed Instructions:
+- You are presented with a board of unmarked cells. 
+- Some cells contain mines (bombs), others don't.
 - Each board has 8 rows and 8 columns and 8 mines.
-- If you select a cell containing a bomb, you lose. If you manage to select all the cells (without selecting on any bombs) you win.
+- If you select a cell containing a bomb, you lose. 
+- If you manage to select all the cells (without selecting on any bombs) you win.
 - Selecting a cell which doesn't have a mine reveals the number of adjacent cells containing mines. Use this information plus some guess work to avoid the mines.
 - To select a cell, type the row number with a space and followed by column number.
 - To flag a cell you think is a bomb, type the row number with a space followed by column number and space again followed by the words “F” or “f”.
-
-### Detailed Instructions:
 - Adjacent cells above, below, left, right, and all 4 diagonals surround a cell. Cells on the sides of the board or in a corner have fewer neighbours.
 - If you open a cell with 0 neighboring bombs, all its neighbors will automatically open. This can cause a large area to automatically open.
 - A number on a cell refers to the number of mines that are currently touching that cell. For example, if there are two cells touching each other and one of the cells has "1" on it, you know that the cells next to it has a mine beneath it. 
@@ -67,11 +74,11 @@ If you have never played before please see the link to read some information abo
 ---
 ### Existing Features:
 
-- Random grid
-    - Location of mines change with every game.
-    - The player cannot see this location
-- Accepts users input
-- Input validation and error-checking
+- Random grid:
+    - The location of mines change with every game.
+    - The player cannot see this location until end of game.
+- Accepts users input for name and selecting cell and or mine choice
+- Input validation and error-checking:
     - You must enter numbers for the rows and columns
     - You must enter F or f for the flag
     - You cannot enter the row and column greater than 8
