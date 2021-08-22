@@ -13,10 +13,10 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file("creds.json")
+CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open("minesweeper")
+SHEET = GSPREAD_CLIENT.open('minesweeper')
 
 
 name = [""]
@@ -38,6 +38,7 @@ def update_sheet(data):
     """
     players_name = SHEET.worksheet("players")
     players_name.append_row(data)
+    print("adding record to google sheet")
 
 
 def get_number():

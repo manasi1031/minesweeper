@@ -3,7 +3,7 @@
 
 # MINESWEEPER
 CHANGE
-![Mockup Image](https://github.com/manasi1031/Mighty-quest/blob/master/assets/images/mockup.jpg)
+![Mockup Image](https://github.com/manasi1031/minesweeper/blob/master/assets/images/mockup.jpg)
 
 ## PURPOSE:
 ---
@@ -124,6 +124,11 @@ Instructions to play the game on the actual game:
 ### Lucidchart:
 - Lucidchart was used to map the workflow for the game.
 ADD CHART HERE
+
+
+
+[Back to Table of Contents](#table-of-contents)
+---
 
 
 ## TESTING
