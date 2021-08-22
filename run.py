@@ -26,7 +26,8 @@ def players_name():
     """
     And add player name
     """
-    name = str(input("Enter the player name: \n"))
+    cprint("\t\t\tMINESWEEPER\n", "cyan")
+    name = str(input("Enter the player name:\n"))
     print("Welcome!", name, ". Let's play Minesweeper!")
     print("\n")
     time.sleep(2)
@@ -36,7 +37,7 @@ def update_sheet(data):
     """
     Update worksheet with new players name
     """
-    players_name = SHEET.worksheet("players")
+    players_name = SHEET.worksheet("names")
     players_name.append_row(data)
     print("adding record to google sheet")
 
@@ -45,8 +46,9 @@ def get_number():
     """
     Get the last row in the sheet
     """
-    numb = len(SHEET.worksheet("players").get_all_values()) - 1
-    print(f"You are player number: {numb}. Let's play!")
+    numb = SHEET.worksheet("names").get_all_values()
+    player_numb = len(numb) - 1
+    print(f"You are player number: {player_numb}. Let's play!")
     print("\n")
     time.sleep(1)
 
@@ -318,26 +320,22 @@ def play_game():
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
-                clear()
                 continue
         # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
-                clear()
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
-                clear()
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
-                clear()
                 continue
             # Get row and column numbers
             r = val[0]-1
@@ -346,13 +344,11 @@ def play_game():
             if [r, col] in flags:
                 cprint("Flag already set", "red")
                 time.sleep(2)
-                clear()
                 continue
             # If a cell has been displayed already
             if mine_values[r][col] != ' ':
                 cprint("Value already displayed!", "red")
                 time.sleep(2)
-                clear()
                 continue
             # Check the number for flags
             if len(flags) < mines_no:
@@ -362,22 +358,18 @@ def play_game():
                 # Set flag to display
                 mine_values[r][col] = 'F'
                 time.sleep(2)
-                clear()
                 continue
             else:
                 cprint("Flags finished", "red")
                 time.sleep(2)
-                clear()
                 continue
         else:
             cprint("Wrong input! Please try again.", "red")
             time.sleep(2)
-            clear()
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
             cprint("Wrong Input! Please try again.", "red")
             time.sleep(2)
-            clear()
             continue
         r = val[0]-1
         col = val[1]-1
