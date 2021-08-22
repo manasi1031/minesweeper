@@ -26,7 +26,7 @@ def players_name():
     """
     And add player name
     """
-    name = str(input("Enter the player name: "))
+    name = str(input("Enter the player name: \n"))
     print("Welcome!", name, ". Let's play Minesweeper!")
     print("\n")
     time.sleep(2)
@@ -307,8 +307,8 @@ def play_game():
 
         # Input from user row & column & // flag
         inp = input("Enter row number followed by space"
-                    " and column number and space again with "
-                    "F/f if flagging a mine:").split()
+                    " and column number \n and space again with "
+                    "F/f if flagging a mine: \n").split()
         # Standard input check
         if len(inp) == 2:
             try:
