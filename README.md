@@ -2,8 +2,8 @@
 ------
 
 # MINESWEEPER
-CHANGE
-![Mockup Image](https://github.com/manasi1031/minesweeper/blob/master/assets/images/mockup.jpg)
+
+![Mockup Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/mockup.jpg)
 
 ## PURPOSE:
 ---
@@ -21,7 +21,7 @@ I remember playing this game when in the 90’s and the craze that was associate
 
 If you have never played before please see the link to read some information about this. https://en.wikipedia.org/wiki/Minesweeper_(video_game) 
 
-## [View live website here] ADD
+## [View live website here](https://minesweeper2021.herokuapp.com/)
 
 ---------
 
@@ -52,6 +52,7 @@ If you have never played before please see the link to read some information abo
 ### How to play:
 
 Instructions to play the game on the actual game:
+
 1. Each board has 8 rows and 8 columns and 8 mines.
 2. Enter row and column number to select a cell, Example \"2 3\".
 3. In order to flag a mine: Enter F after row and column numbers, Example \"2 3 F\".
@@ -83,28 +84,28 @@ Instructions to play the game on the actual game:
 
 ### Existing Features:
 
-- Random grid:
+- I have used the random grid for the game outlining the below:
     - The location of mines change with every game.
-    - The player cannot see this location until end of game.
+    - The player cannot see this location until end of game either when they win or land on a mine.
 
-- Accepts users input for name and selecting cell and or mine choice
+- The game accepts users input for player name and selecting cell (Row & Column) and or mine choice.
 
-- Input validation and error-checking:
-    - You must enter numbers for the rows and columns
-    - You must enter F or f for the flag
-    - You cannot enter the row and column greater than 8
-    - You cannot enter the same input again
+- The game also allows for input validation and error-checking as below:
+    - You must enter numbers for the rows and columns with a space in between.
+    - You must enter F or f for marking the flag.
+    - You cannot enter the row and column greater than 8.
+    - You cannot enter the same input again.
 
-- Maintains a record of the names of all the players who have played the game.
+- Maintains a record of the names of all the players who have played the game and shows the number o fthe player on the list. To view the google spreadsheet for any issues see [link](https://docs.google.com/spreadsheets/d/1b8eg39v8RJIqNgyyxrlcV7u56zLA8AMa-3h0r1FZ8Sw/edit?usp=sharing)
 
 ### Future features:
 
-- Time limits or recording time in gerenal taken to play.
+- Time limits or recording time in general taken to play.
 - Level of difficulty – Easy, Medium and Hard.
-
 
 [Back to Table of Contents](#table-of-contents)
 ---
+
 
 ## TECHNOLOGIES USED:
 ---
@@ -120,6 +121,9 @@ Instructions to play the game on the actual game:
 
 ### Code Institutes mock terminal (Heroku):
 - Code Institute provided a mock terminal for use for the project.
+
+### PNG to JPG:
+- I have used this [link](https://png2jpg.com/) to convert png images to jpg.
 
 ### Lucidchart:
 - Lucidchart was used to map the workflow for the game.
@@ -141,17 +145,17 @@ ADD CHART HERE
 
 ### Solved Bugs
 
-1. No error messages popping up when a wrong input is given for the game. I used the time.sleep function after the message and that actually showed the messages before the next grid came up. It was showing before but as there was no pause, I was unable to see it.
+1. No error messages were popping up when a wrong input is given for the game. I used the time.sleep function after the message and that actually showed the messages before the next grid came up. It was showing before but as there was no pause, I was unable to see it.
 
 2. Terminal syntax error for global values of all variables in the play_game function. I had also defined 2 global values with some data. This was what resulted in the error as below. 
 
-![Terminal syntax error](https://github.com/manasi1031/minesweeper/blob/master/assets/images/terminal-syntaxerror.jpg)
+![Terminal syntax error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/terminal-syntaxerror.jpg)
 
 To avoid this error, I removed the values defined, as I had already defined them later again and just added the list of my global variables required. This stopped the error and played the game.
 
 3. Heroku Deployment Error
 
-![Heroku Deployment error](https://github.com/manasi1031/minesweeper/blob/master/assets/images/deployment-error.jpg)
+![Heroku Deployment error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/deployment-error.jpg)
 
 To resolve the issue, I added "six" module to the requirements.txt as recommended by Slackers and by CI Tutor. Once I pushed this and re-deployed on heroku, the app worked well.
 
@@ -175,16 +179,36 @@ Add image at end
 
 This project was deployed using Code Institute's mock terminal for Heroku.
 
-- Fork or clone this repository
+- Ensure all the dependencies are included by adding them to the requirements.txt file by running the following command in the terminal: pip3 freeze > requirements.txt.
+- Ensure the project has been fully committed and pushed to git.
+- Go to your heroku account, if you don't have one create one.
+- On the home screen click on the create new app button.
+- Enter a name for the project and select your region to the correct region.
+- On the next screen select settings.
+- Go to config vars and click reveal config vars.
+- Switch to the program file and where you are keeping your credentials copy these and then on heroku enter a name for the key (CREDS) and paste the code into the config vars value box and click add.
+- Now scroll down to buildPacks and click add build packs.
+- First select python and click save changes.
+- Click back into build packs and choose node.js and click save again.
+- Ensure that the Python build pack is at the top of the list you are abe to drag and drop if you need to rearrange.
+- Now select deploy.
+- From the deployment method select GitHub.
+- Then click on the connect to github button that appears.
+- Click into the search box and search for the project name.
+- Once located select connect.
+- Then click deploy branch, this will then be shown in the box below.
+- You can the click view to show the app in a browser.
+- The program can be deployed automatically, but i have chosen to keep it as a manual deploy so i can ensure that while i am testing and maybe adding more to the code currently it is better to deploy it manually meaning returning to the screen and clicking deploy branch each time you want to make any changes.
 
-- Create a new Heroku app
+How to clone a github repository?
 
-- Set the buildbacks to Puthon and NodeJS in that order
-
-- Link the Heroku app to repository
-
-- Click on Deploy
-
+- On GitHub go to the main page of the Repository.
+- Above the list of files click the code button with the drop-down arrow.
+- To clone the repository using HTTPS, under "Clone with HTTPS", click on the clipboard.
+- Open the Git Bash terminal.
+- Change the current working directory to the location where you want the cloned directory.
+- Type git clone, and then paste the URL you copied earlier from step 3.
+- Press Enter to create your local clone.
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -192,16 +216,21 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 ## CREDITS
 ---
 
-1. I have used the time.sleep() function to show messages and hold it before showing grid again. This was to give some pause for the player to read instructions or feedback. The link I used was - https://realpython.com/python-sleep/#adding-a-python-sleep-call-with-timesleep  
+1. I have used the time.sleep() function to show messages and hold it before showing grid again. This was to give some pause for the player to read instructions or feedback. The link I used was - [time.sleep function](https://realpython.com/python-sleep/#adding-a-python-sleep-call-with-timesleep)
 
-2. Python recursive function usage or understanding notes taken from the below link: https://www.programiz.com/python-programming/recursion#:~:text=Recursive%20Function%20in%20Python%20Following%20is%20an%20example,%28denoted%20as%206%21%29%20is%201%2A2%2A3%2A4%2A5%2A6%20%3D%20720.%20 
+2. Python recursive function usage or understanding notes taken from the below link: [Recursive function in Python](https://www.programiz.com/python-programming/recursion#:~:text=Recursive%20Function%20in%20Python%20Following%20is%20an%20example,%28denoted%20as%206%21%29%20is%201%2A2%2A3%2A4%2A5%2A6%20%3D%20720.%20)
 
-3. I have used termcolor cprint usage options by reading this page for examples of how to use to give some color to the page - https://www.programcreek.com/python/example/60805/termcolor.cprint 
+3. I have used termcolor cprint usage options by reading this page for examples of how to use to give some color to the page - [How to use termcolor in Python](https://www.programcreek.com/python/example/60805/termcolor.cprint)
 
-4. I have used the link from Wikipedia show show people what minesweeper is in general - https://en.wikipedia.org/wiki/Minesweeper_(video_game)
+4. I have used the link from Wikipedia show show people what minesweeper is in general - [Minesweeper Wikipedia link](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
+
+5. I have used the used this as a study to help me with creating and understanding the way to proceed with my minesweeper game and is not copied from this - [How to program minesweeper in Python](https://replit.com/talk/learn/How-to-program-MineSweeper-in-Python-fully-explained-in-depth-tutorial/9397)
+
+6. I had to used the Code Institute Love Sandwiches project as an instruction manual when adding library / modules and finally deploying to Heroku.
 
 [Back to Table of Contents](#table-of-contents)
 ---
+
 
 ## ACKNOWLEDGEMENTS
 ---

@@ -19,7 +19,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('minesweeper')
 
 
-name = [""]
+name = [" "]
 
 
 def players_name():
@@ -56,7 +56,7 @@ def instructions():
     Function to display the instructions on how to play
     """
     cprint("Instructions to play the game:\n", "green")
-    print("1.Each board has 8 rows and 8 columns and 8 mines\n")
+    print("1.Each board has 8 rows and 8 columns and 8 mines")
     cprint("2. Enter row and column number to select a cell, Example \"2 3\"")
     print("3. In order to flag a mine:"
           "Enter F after row and column numbers, Example \"2 3 F\"")
@@ -184,6 +184,7 @@ def end_game():
             if game_end_input == 2:
                 cprint("You chose to exit the game!!!", "cyan")
                 time.sleep(2)
+                print("Click 'RUN PROGRAM' to play again")
                 exit()
         except ValueError:
             cprint("Wrong choice!. Please enter 1 to play or 2 to quit", "red")
@@ -317,22 +318,26 @@ def play_game():
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
+                clear()
                 continue
         # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
+                clear()
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
+                clear()
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 cprint("Wrong input! Please try again.", "red")
                 time.sleep(2)
+                clear()
                 continue
             # Get row and column numbers
             r = val[0]-1
@@ -341,11 +346,13 @@ def play_game():
             if [r, col] in flags:
                 cprint("Flag already set", "red")
                 time.sleep(2)
+                clear()
                 continue
             # If a cell has been displayed already
             if mine_values[r][col] != ' ':
                 cprint("Value already displayed!", "red")
                 time.sleep(2)
+                clear()
                 continue
             # Check the number for flags
             if len(flags) < mines_no:
@@ -355,18 +362,22 @@ def play_game():
                 # Set flag to display
                 mine_values[r][col] = 'F'
                 time.sleep(2)
+                clear()
                 continue
             else:
                 cprint("Flags finished", "red")
                 time.sleep(2)
+                clear()
                 continue
         else:
             cprint("Wrong input! Please try again.", "red")
             time.sleep(2)
+            clear()
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
             cprint("Wrong Input! Please try again.", "red")
             time.sleep(2)
+            clear()
             continue
         r = val[0]-1
         col = val[1]-1
