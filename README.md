@@ -145,9 +145,16 @@ ADD CHART HERE
 
 2. Terminal syntax error for global values of all variables in the play_game function. I had also defined 2 global values with some data. This was what resulted in the error as below. 
 
-![terminal syntax error](https://github.com/manasi1031/minesweeper/blob/master/assets/images/terminal-syntaxerror.jpg)
+![Terminal syntax error](https://github.com/manasi1031/minesweeper/blob/master/assets/images/terminal-syntaxerror.jpg)
 
 To avoid this error, I removed the values defined, as I had already defined them later again and just added the list of my global variables required. This stopped the error and played the game.
+
+3. Heroku Deployment Error
+
+![Heroku Deployment error](https://github.com/manasi1031/minesweeper/blob/master/assets/images/deployment-error.jpg)
+
+To resolve the issue, I added "six" module to the requirements.txt as recommended by Slackers and by CI Tutor. Once I pushed this and re-deployed on heroku, the app worked well.
+
 
 ### Remaining Bugs
 
