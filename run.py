@@ -19,34 +19,34 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('minesweeper')
 
 
-name = [" "]
+name = [""]
 
 
 def players_name():
     """
     And add player name
     """
-    cprint("\t\t\tMINESWEEPER\n", "cyan")
-    name = str(input("Enter the player name:\n"))
+    cprint("\t\t\tMINESWEEPER\n", "blue")
+    name = input("Enter the player name:\n")
     print("Welcome!", name, ". Let's play Minesweeper!")
     print("\n")
     time.sleep(2)
+    return name
 
 
 def update_sheet(data):
     """
     Update worksheet with new players name
     """
-    players_name = SHEET.worksheet("names")
-    players_name.append_row(data)
-    print("adding record to google sheet")
+    players_name = SHEET.worksheet("players")
+    players_name.append_row([data])
 
 
 def get_number():
     """
     Get the last row in the sheet
     """
-    numb = SHEET.worksheet("names").get_all_values()
+    numb = SHEET.worksheet("players").get_all_values()
     player_numb = len(numb) - 1
     print(f"You are player number: {player_numb}. Let's play!")
     print("\n")
@@ -74,7 +74,7 @@ def print_mines_grid():
     global mine_values
     global num
     print()
-    cprint("\t\t\tMINESWEEPER\n", "cyan")
+    cprint("\t\t\tMINESWEEPER\n", "blue")
 
     cell = "   "
     for i in range(num):
@@ -180,11 +180,11 @@ def end_game():
             game_end_input = int(input("Please enter 1 "
                                        "to play again or 2 to quit: \n"))
             if game_end_input == 1:
-                cprint("You chose to play again!!!", "cyan")
+                cprint("You chose to play again!!!", "blue")
                 time.sleep(2)
                 play_game()
             if game_end_input == 2:
-                cprint("You chose to exit the game!!!", "cyan")
+                cprint("You chose to exit the game!!!", "blue")
                 time.sleep(2)
                 print("Click 'RUN PROGRAM' to play again")
                 exit()
@@ -292,8 +292,8 @@ def play_game():
     mine_values = [[' ' for y in range(num)] for x in range(num)]
     flags = []  # Positions of flag
 
-    players_name()
-    update_sheet(name)
+    player_name = players_name()
+    update_sheet(player_name)
     get_number()
     instructions()
     set_mines()

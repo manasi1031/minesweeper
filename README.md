@@ -159,10 +159,16 @@ To avoid this error, I removed the values defined, as I had already defined them
 
 To resolve the issue, I added "six" module to the requirements.txt as recommended by Slackers and by CI Tutor. Once I pushed this and re-deployed on heroku, the app worked well.
 
+- The player name does not append to googlespreadsheet and this was not recording data to my spreadsheet or giving me the player number on my list. To resolve this I had assistance from my mentor and we did the following steps:
+    - Removed "str" from this line "name = input("Enter the player name:\n")"
+    - In the play game function, we changed the calling of the previous functions to below:
+        player_name = players_name()
+        update_sheet(player_name)
+
 
 ### Remaining Bugs
 
-- The data does not append to workheet so the 2 functions still dont work correctly 
+- No bugs left to resolve.
 
 
 ### Code Validation
