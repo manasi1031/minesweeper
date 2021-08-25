@@ -26,7 +26,7 @@ def players_name():
     """
     And add player name
     """
-    cprint("\t\t\tMINESWEEPER\n", "blue")
+    cprint("\t\t\tMINESWEEPER\n", "green")
     name = input("Enter the player name:\n")
     print("Welcome!", name, ". Let's play Minesweeper!")
     print("\n")
@@ -74,7 +74,7 @@ def print_mines_grid():
     global mine_values
     global num
     print()
-    cprint("\t\t\tMINESWEEPER\n", "blue")
+    cprint("\t\t\tMINESWEEPER\n", "green")
 
     cell = "   "
     for i in range(num):
@@ -180,11 +180,11 @@ def end_game():
             game_end_input = int(input("Please enter 1 "
                                        "to play again or 2 to quit: \n"))
             if game_end_input == 1:
-                cprint("You chose to play again!!!", "blue")
+                cprint("You chose to play again!!!", "green")
                 time.sleep(2)
                 play_game()
             if game_end_input == 2:
-                cprint("You chose to exit the game!!!", "blue")
+                cprint("You chose to exit the game!!!", "green")
                 time.sleep(2)
                 print("Click 'RUN PROGRAM' to play again")
                 exit()
@@ -317,24 +317,30 @@ def play_game():
         if len(inp) == 2:
             try:
                 val = list(map(int, inp))
+                print("your input was: ", inp)
+                time.sleep(2)
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
         # Flag input check
         elif len(inp) == 3:
             if inp[2] != 'F' and inp[2] != 'f':
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
             try:
                 val = list(map(int, inp[:2]))
             except ValueError:
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
             if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
                 cprint("Wrong input! Please try again.", "red")
+                instructions()
                 time.sleep(2)
                 continue
             # Get row and column numbers
@@ -348,6 +354,7 @@ def play_game():
             # If a cell has been displayed already
             if mine_values[r][col] != ' ':
                 cprint("Value already displayed!", "red")
+                instructions()
                 time.sleep(2)
                 continue
             # Check the number for flags
@@ -361,14 +368,17 @@ def play_game():
                 continue
             else:
                 cprint("Flags finished", "red")
+                instructions()
                 time.sleep(2)
                 continue
         else:
             cprint("Wrong input! Please try again.", "red")
+            instructions()
             time.sleep(2)
             continue
         if val[0] > num or val[0] < 1 or val[1] > num or val[1] < 1:
             cprint("Wrong Input! Please try again.", "red")
+            instructions()
             time.sleep(2)
             continue
         r = val[0]-1

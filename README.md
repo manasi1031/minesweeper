@@ -19,7 +19,7 @@ Minesweeper is similar to a Sudoku puzzle; in that your success is largely conti
 
 I remember playing this game when in the 90’s and the craze that was associated with it. Hence I though it was a pretty good idea to bring this classic and nostalgic game alive in my project.
 
-If you have never played before please see the link to read some information about this. https://en.wikipedia.org/wiki/Minesweeper_(video_game) 
+If you have never played before, please see the link to read some information about this. https://en.wikipedia.org/wiki/Minesweeper_(video_game) 
 
 ## [View live website here](https://minesweeper2021.herokuapp.com/)
 
@@ -58,6 +58,8 @@ Instructions to play the game on the actual game:
 3. In order to flag a mine: Enter F after row and column numbers, Example \"2 3 F\".
 4. If you step on a mine, then GAME OVER.
 
+![Instructions on deployed site](https://github.com/manasi1031/minesweeper/blob/main/assets/images/instructions.jpg)
+
 ### Detailed Instructions:
 
 - You are presented with a board of unmarked cells. 
@@ -88,20 +90,42 @@ Instructions to play the game on the actual game:
     - The location of mines change with every game.
     - The player cannot see this location until end of game either when they win or land on a mine.
 
+![Grid on deployed site](https://github.com/manasi1031/minesweeper/blob/main/assets/images/grid.jpg)
+
+
 - The game accepts users input for player name and selecting cell (Row & Column) and or mine choice.
+
+![Player name Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/player-name.jpg)
+
+![Game input Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/game-input.jpg)
+
+![End of game with replay option Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/end-game-replay-option.jpg)
+
 
 - The game also allows for input validation and error-checking as below:
     - You must enter numbers for the rows and columns with a space in between.
     - You must enter F or f for marking the flag.
     - You cannot enter the row and column greater than 8.
-    - You cannot enter the same input again.
+    - You cannot flag more than 8 flags.
+    (The current feature does not prompt if a cell is already displaying a number and it just skips to a new grid with new input)
 
-- Maintains a record of the names of all the players who have played the game and shows the number o fthe player on the list. To view the google spreadsheet for any issues see [link](https://docs.google.com/spreadsheets/d/1b8eg39v8RJIqNgyyxrlcV7u56zLA8AMa-3h0r1FZ8Sw/edit?usp=sharing)
+![Input flag no space error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-flag-no-space-error.jpg)
+
+![Input no number error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-no-number-error.jpg)
+
+![Input no space error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-no-space-error.jpg)
+
+
+- Maintains a record of the names of all the players who have played the game and shows the number of the player on the list recorded. To view the google spreadsheet for any issues see [link](https://docs.google.com/spreadsheets/d/1b8eg39v8RJIqNgyyxrlcV7u56zLA8AMa-3h0r1FZ8Sw/edit?usp=sharing)
+
+![Player list Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/player-list.jpg)
+
 
 ### Future features:
 
 - Time limits or recording time in general taken to play.
 - Level of difficulty – Easy, Medium and Hard.
+- If a value is already provided on grid, then state that its there and try again by highlighting the section view.
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -127,8 +151,8 @@ Instructions to play the game on the actual game:
 
 ### Lucidchart:
 - Lucidchart was used to map the workflow for the game.
-ADD CHART HERE
 
+![Lucid Chart for Workflor](https://github.com/manasi1031/minesweeper/blob/main/assets/images/lucid-chart.jpg)
 
 
 [Back to Table of Contents](#table-of-contents)
@@ -159,8 +183,9 @@ To avoid this error, I removed the values defined, as I had already defined them
 
 To resolve the issue, I added "six" module to the requirements.txt as recommended by Slackers and by CI Tutor. Once I pushed this and re-deployed on heroku, the app worked well.
 
-- The player name does not append to googlespreadsheet and this was not recording data to my spreadsheet or giving me the player number on my list. To resolve this I had assistance from my mentor and we did the following steps:
+- The player name does not append to googlespreadsheet and this was not recording data to my spreadsheet or giving me the player number on my list. I spent a lot of time trying to read material online but was unsuccessful. To resolve this I finally had assistance from my mentor and we did the following steps:
     - Removed "str" from this line "name = input("Enter the player name:\n")"
+    - In player name function, also added a "return name" to give the name result for using it in next functions.
     - In the play game function, we changed the calling of the previous functions to below:
         player_name = players_name()
         update_sheet(player_name)
@@ -175,7 +200,7 @@ To resolve the issue, I added "six" module to the requirements.txt as recommende
 
 The code was checked using [PEP8 Python Validator](http://pep8online.com/) and it did not show any errors.
 
-Add image at end
+![Pep8 validator result](https://github.com/manasi1031/minesweeper/blob/main/assets/images/pep8-validator-result.jpg)
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -230,7 +255,7 @@ How to clone a github repository?
 
 4. I have used the link from Wikipedia show show people what minesweeper is in general - [Minesweeper Wikipedia link](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
 
-5. I have used the used this as a study to help me with creating and understanding the way to proceed with my minesweeper game and is not copied from this - [How to program minesweeper in Python](https://replit.com/talk/learn/How-to-program-MineSweeper-in-Python-fully-explained-in-depth-tutorial/9397)
+5. I have used the used this as a study or guide to help me with creating and understanding the way to proceed with my minesweeper game - [How to program minesweeper in Python](https://replit.com/talk/learn/How-to-program-MineSweeper-in-Python-fully-explained-in-depth-tutorial/9397)
 
 6. I had to used the Code Institute Love Sandwiches project as an instruction manual when adding library / modules and finally deploying to Heroku.
 
