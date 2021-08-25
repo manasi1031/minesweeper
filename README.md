@@ -107,6 +107,7 @@ Instructions to play the game on the actual game:
     - You must enter F or f for marking the flag.
     - You cannot enter the row and column greater than 8.
     - You cannot flag more than 8 flags.
+    - If you put the above it will show an error and also display the instructions again to player to read.
     (The current feature does not prompt if a cell is already displaying a number and it just skips to a new grid with new input)
 
 ![Input flag no space error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-flag-no-space-error.jpg)
@@ -114,6 +115,8 @@ Instructions to play the game on the actual game:
 ![Input no number error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-no-number-error.jpg)
 
 ![Input no space error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-no-space-error.jpg)
+
+![Flags exceeded error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/flags-exceeded-error.jpg)
 
 
 - Maintains a record of the names of all the players who have played the game and shows the number of the player on the list recorded. To view the google spreadsheet for any issues see [link](https://docs.google.com/spreadsheets/d/1b8eg39v8RJIqNgyyxrlcV7u56zLA8AMa-3h0r1FZ8Sw/edit?usp=sharing)
@@ -151,8 +154,9 @@ Instructions to play the game on the actual game:
 
 ### Lucidchart:
 - Lucidchart was used to map the workflow for the game.
+I was not comfortable with this feature and have tried my best to show an overview of my game.
 
-![Lucid Chart for Workflor](https://github.com/manasi1031/minesweeper/blob/main/assets/images/lucid-chart.jpg)
+![Lucid Chart for Workflow](https://github.com/manasi1031/minesweeper/blob/main/assets/images/lucid-chart.jpg)
 
 
 [Back to Table of Contents](#table-of-contents)

@@ -58,8 +58,8 @@ def instructions():
     Function to display the instructions on how to play
     """
     cprint("Instructions to play the game:\n", "green")
-    print("1.Each board has 8 rows and 8 columns and 8 mines")
-    cprint("2. Enter row and column number to select a cell, Example \"2 3\"")
+    print("1. Each board has 8 rows and 8 columns and 8 mines")
+    print("2. Enter row and column number to select a cell, Example \"2 3\"")
     print("3. In order to flag a mine:"
           "Enter F after row and column numbers, Example \"2 3 F\"")
     print("4. If you step on a mine, then GAME OVER\n")
@@ -311,7 +311,7 @@ def play_game():
 
         # Input from user row & column & // flag
         inp = input("Enter row number followed by space"
-                    " and column number \n and space again with "
+                    "and column number \n and space again with "
                     "F/f if flagging a mine: \n").split()
         # Standard input check
         if len(inp) == 2:
