@@ -76,7 +76,7 @@ Instructions to play the game on the actual game:
 - You don't have to flag all the mines to win; you just need to open all non-mine cells.
 - The 'M' symbol denotes the presence of a ‘mine’ in that cell. Any number on the grid denotes the number of mines present in the neighbouring ‘eight’ cells. 
 - You cannot stop the game mid-way unless you click “Run terminal”.
-- You will have the option of starting a new game or redoing the one you just played.
+- You will have the option of starting a new game or redoing the one you just played at the end of the game.
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -108,7 +108,7 @@ Instructions to play the game on the actual game:
     - You cannot enter the row and column greater than 8.
     - You cannot flag more than 8 flags.
     - If you put the above it will show an error and also display the instructions again to player to read.
-    (The current feature does not prompt if a cell is already displaying a number and it just skips to a new grid with new input)
+    - The current feature does not prompt if a cell is already displaying a number (chosen cell) and it just skips to a new grid with new input. This will be an update to add to the future feature version.
 
 ![Input flag no space error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-flag-no-space-error.jpg)
 
@@ -173,7 +173,8 @@ I was not comfortable with this feature and have tried my best to show an overvi
 
 ### Solved Bugs
 
-1. No error messages were popping up when a wrong input is given for the game. I used the time.sleep function after the message and that actually showed the messages before the next grid came up. It was showing before but as there was no pause, I was unable to see it.
+1. There was no pause after the error messages were showing up and the grid came on next with the input request. I thought that there is a bug. "No error messages were popping up when a wrong input is given for the game." In reality, there was nothing to slow down the function in my code to show the error before showing the next grid.
+For this, I used the time.sleep function after the message and that actually showed the messages before the next grid came up. This gave a more realistic approach to the game, as the player could see what has happened before the next grid came up.
 
 2. Terminal syntax error for global values of all variables in the play_game function. I had also defined 2 global values with some data. This was what resulted in the error as below. 
 
@@ -193,6 +194,14 @@ To resolve the issue, I added "six" module to the requirements.txt as recommende
     - In the play game function, we changed the calling of the previous functions to below:
         player_name = players_name()
         update_sheet(player_name)
+
+4. I received feedback that grid size of the minesweeper is too big for the Heroku deployed window. Please note that at the time of me creating this grid, it showed perfectly fine on the gitpod terminal. When I deployed it, the view does not fit in the screen and my fellow students on Slack suggested that I reduce the size to fit the screen. However, I have chosen not to proceed with this to give a better game experience.
+This is not a bug really, but I wanted to ensure that I have recorded feedback received and taken a note of it.
+In the future version, this will be the easy grid and the smallest one available. The medium and hard versions will be bigger than this for sure. 
+
+5. When I added the end_game function, the option to exit worked well, but the option to restart was not working at all. 
+Originally I had used if __name__ == "__main__" for the final game function, as I was reading through some material online and thought this was a good fit. But with the end_game function this did not work well as I could not call this function from my end_game function.
+For this, I changed the main game function to state as "play_game" function and this worked perfectly.
 
 
 ### Remaining Bugs
@@ -233,7 +242,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 - Once located select connect.
 - Then click deploy branch, this will then be shown in the box below.
 - You can the click view to show the app in a browser.
-- The program can be deployed automatically, but i have chosen to keep it as a manual deploy so i can ensure that while i am testing and maybe adding more to the code currently it is better to deploy it manually meaning returning to the screen and clicking deploy branch each time you want to make any changes.
+- The program can be deployed automatically, but I have chosen to keep it as a manual deploy so i can ensure that while I am testing and maybe adding more to the code currently it is better to deploy it manually meaning returning to the screen and clicking deploy branch each time you want to make any changes. (My mentor also suggested to keep on a manual deploy for the project)
 
 How to clone a github repository?
 
@@ -262,6 +271,9 @@ How to clone a github repository?
 5. I have used the used this as a study or guide to help me with creating and understanding the way to proceed with my minesweeper game - [How to program minesweeper in Python](https://replit.com/talk/learn/How-to-program-MineSweeper-in-Python-fully-explained-in-depth-tutorial/9397)
 
 6. I had to used the Code Institute Love Sandwiches project as an instruction manual when adding library / modules and finally deploying to Heroku.
+
+7. Reference material when using the If __name__ == ‘__main__’- [If __name__ == ‘__main__’: What Does It Mean in Python?](https://codefather.tech/blog/if-name-main-python/)
+
 
 [Back to Table of Contents](#table-of-contents)
 ---
