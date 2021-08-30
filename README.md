@@ -3,7 +3,9 @@
 
 # MINESWEEPER
 
-![Mockup Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/mockup.jpg)
+![Multi Device Mockup Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/multi-device-mockup.jpg)
+
+![Single Mockup Image](https://github.com/manasi1031/minesweeper/blob/main/assets/images/mockup.jpg)
 
 ## PURPOSE:
 ---
@@ -83,7 +85,7 @@ Instructions to play the game on the actual game:
 - The 'M' symbol denotes the presence of a ‘mine’ in that cell. Any number on the grid denotes the number of mines present in the neighbouring ‘eight’ cells. 
 - You cannot stop the game mid-way unless you click “Run terminal”.
 - You will have the option of starting a new game or redoing the one you just played at the end of the game.
-- The restart game will start from the exact beginning from requesting the player name to add to sheet. If the player is playing consecutively with same name, then the name does not add on.
+- The restart game will start from the exact beginning from requesting the player name to add to sheet. 
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -112,9 +114,10 @@ My aim is to provide data relevant to the user story and enhance the overall exp
 - I want to see scores
 - I want to time my game
 - I want to have levels of difficulty
+Note: This is a part of the future features section and not used for current version.
 
 #### Target Audience:
-Anyone can play this game and there is no specific target audience.
+Anyone can play this game and there is no specific target audience for the game.
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -173,7 +176,7 @@ Anyone can play this game and there is no specific target audience.
 
 FEEDBACK NOTE UPDATE: I received feedback that grid size of the minesweeper is too big for the Heroku deployed window. Please note that at the time of me creating this grid, it showed perfectly fine on the gitpod terminal. When I deployed it, the view does not fit in the screen and my fellow students on Slack suggested that I reduce the size to fit the screen. However, I have chosen not to proceed with this to give a better game experience and people can really scroll down the screen to view the full view.
 This is not a bug really, but I wanted to ensure that I have recorded feedback received and taken a note of it.
-In the future version, this will be the easy grid and the smallest one available. The medium and hard versions will be bigger than this for sure. 
+In the future version, this will be the easy grid and the smallest one available. The medium and hard versions will be bigger than this for sure but I may re-visit the cell size or have more columns, etc.
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -349,3 +352,4 @@ Last but not the least, I would like to thank [Code Institute](https://codeinsti
 
 [Back to Table of Contents](#table-of-contents)
 ---
+
