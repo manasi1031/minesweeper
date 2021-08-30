@@ -186,6 +186,8 @@ def end_game():
             if game_end_input == 2:
                 cprint("You chose to exit the game!!!", "green")
                 time.sleep(2)
+                clear()
+                cprint("Thank you for playing my game!!!", "green")
                 print("Click 'RUN PROGRAM' to play again")
                 exit()
         except ValueError:
@@ -311,8 +313,8 @@ def play_game():
 
         # Input from user row & column & // flag
         inp = input("Enter row number followed by space"
-                    "and column number \n and space again with "
-                    "F/f if flagging a mine: \n").split()
+                    "and column number\n and space again with "
+                    "F/f if flagging a mine:\n").split()
         # Standard input check
         if len(inp) == 2:
             try:
@@ -414,4 +416,5 @@ def play_game():
         clear()
 
 
+# Play game function called to run the whole game
 play_game()

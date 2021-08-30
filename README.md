@@ -31,10 +31,16 @@ If you have never played before, please see the link to read some information ab
 - [Information to Play](#information-to-play)
     - [How to play](#how-to-play)
     - [Detailed Instructions](#detailed-instructions)
+- [Goals](#goals)
+    - [Goal](#goal)
+    - [Aim](#aim)
+    - [User Stories and testing](#user-stories-and-testing)
+    - [Target Audience](#target-audience)
 - [Features](#features)
     - [Existing Features](#existing-features)
     - [Future features](#future-features)
 - [Technologies Used](#technologies-used)
+- [Data Model](#data-model)
 - [Testing](#testing)
     - [Functionality Testing](#functionality-testing)
     - [Solved Bugs](#solved-bugs)
@@ -77,9 +83,42 @@ Instructions to play the game on the actual game:
 - The 'M' symbol denotes the presence of a ‘mine’ in that cell. Any number on the grid denotes the number of mines present in the neighbouring ‘eight’ cells. 
 - You cannot stop the game mid-way unless you click “Run terminal”.
 - You will have the option of starting a new game or redoing the one you just played at the end of the game.
+- The restart game will start from the exact beginning from requesting the player name to add to sheet. If the player is playing consecutively with same name, then the name does not add on.
 
 [Back to Table of Contents](#table-of-contents)
 ---
+
+
+## GOALS
+---
+
+### Goal:
+My goal is to re-create the minesweeper game in a Python terminal to test my ability of Python coding.
+
+### Aim:
+My aim is to provide data relevant to the user story and enhance the overall experience of this game.
+
+### User Stories and testing:
+
+#### First time user:
+- I want clear instructions about how to play
+    _I have given clear instructions to play the game in 4 steps and this repeats with any key input errors_
+- I want clear feedback to my input
+    _Clear feedback is given to inputs. Example: when name is given, it states "welcome <player name>"; when row and column number is added, the system states what the player has chosen, etc_
+- I want to have an option to play game again or exit if I win or fail.
+    _There is a function that gives an option at the end to either press 1 to play again or press 2 to exit the game_
+
+#### Repeat User:
+- I want to see scores
+- I want to time my game
+- I want to have levels of difficulty
+
+#### Target Audience:
+Anyone can play this game and there is no specific target audience.
+
+[Back to Table of Contents](#table-of-contents)
+---
+
 
 ## FEATURES
 ---
@@ -130,6 +169,12 @@ Instructions to play the game on the actual game:
 - Level of difficulty – Easy, Medium and Hard.
 - If a value is already provided on grid, then state that its there and try again by highlighting the section view.
 
+![Grid on deployed site](https://github.com/manasi1031/minesweeper/blob/main/assets/images/grid.jpg)
+
+FEEDBACK NOTE UPDATE: I received feedback that grid size of the minesweeper is too big for the Heroku deployed window. Please note that at the time of me creating this grid, it showed perfectly fine on the gitpod terminal. When I deployed it, the view does not fit in the screen and my fellow students on Slack suggested that I reduce the size to fit the screen. However, I have chosen not to proceed with this to give a better game experience and people can really scroll down the screen to view the full view.
+This is not a bug really, but I wanted to ensure that I have recorded feedback received and taken a note of it.
+In the future version, this will be the easy grid and the smallest one available. The medium and hard versions will be bigger than this for sure. 
+
 [Back to Table of Contents](#table-of-contents)
 ---
 
@@ -162,6 +207,27 @@ I was not comfortable with this feature and have tried my best to show an overvi
 [Back to Table of Contents](#table-of-contents)
 ---
 
+## DATA MODEL
+---
+
+- Each function is defined separately and finally called in the play_game function to ensure that sections are working individually.
+    - _players_name_ function lets the player add their name.
+    - _update_sheet_ function adds the name recorded to the google spreadsheet.
+    - _get_number_ function gets the last row number of the player and gives the comment - "You are player number "20". Lets play!".
+    - _instructions_ function gives the instructions for players to read about how to play the game.
+    - _print_mines_grid_ function 
+- I have used Google spreadsheets to record player names and pulled the record to show the number on the list of the player from who have played this game prior.
+- I have not used any Python library for this project as it did not seem relevant.
+- My code is quite simple and hence on this occassion, I have not used any Class. This may change in the future versions.
+- I have used python packages / modules as below for the project:
+    - "Random" to plot the mines and adjacent cells so that mines are never in the same place.
+    - "Time" has been used to show the delay after displaying some content and then moving on to the next section of the game This allows time for users / players to read instructions or feedback.
+    - "OS" to clear terminal.
+    - "Termcolor" has been used to just add a splash of color to the otherwise black and white screen.
+- I have used global variables mainly, as they relate in different functions.
+
+[Back to Table of Contents](#table-of-contents)
+---
 
 ## TESTING
 ---
@@ -195,11 +261,7 @@ To resolve the issue, I added "six" module to the requirements.txt as recommende
         player_name = players_name()
         update_sheet(player_name)
 
-4. I received feedback that grid size of the minesweeper is too big for the Heroku deployed window. Please note that at the time of me creating this grid, it showed perfectly fine on the gitpod terminal. When I deployed it, the view does not fit in the screen and my fellow students on Slack suggested that I reduce the size to fit the screen. However, I have chosen not to proceed with this to give a better game experience.
-This is not a bug really, but I wanted to ensure that I have recorded feedback received and taken a note of it.
-In the future version, this will be the easy grid and the smallest one available. The medium and hard versions will be bigger than this for sure. 
-
-5. When I added the end_game function, the option to exit worked well, but the option to restart was not working at all. 
+4. When I added the end_game function, the option to exit worked well, but the option to restart was not working at all. 
 Originally I had used if __name__ == "__main__" for the final game function, as I was reading through some material online and thought this was a good fit. But with the end_game function this did not work well as I could not call this function from my end_game function.
 For this, I changed the main game function to state as "play_game" function and this worked perfectly.
 
