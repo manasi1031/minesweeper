@@ -104,11 +104,17 @@ My aim is to provide data relevant to the user story and enhance the overall exp
 
 #### First time user:
 - I want clear instructions about how to play
+
     _I have given clear instructions to play the game in 4 steps and this repeats with any key input errors_
+
 - I want clear feedback to my input
+
     _Clear feedback is given to inputs. Example: when name is given, it states "welcome <player name>"; when row and column number is added, the system states what the player has chosen, etc_
+
 - I want to have an option to play game again or exit if I win or fail.
+
     _There is a function that gives an option at the end to either press 1 to play again or press 2 to exit the game_
+
 
 #### Repeat User:
 - I want to see scores
@@ -134,6 +140,7 @@ Anyone can play this game and there is no specific target audience for the game.
 
 ![Grid on deployed site](https://github.com/manasi1031/minesweeper/blob/main/assets/images/grid.jpg)
 
+- The game starts immediately after the instructions are displayed, as that means the player wants to play the game. The view can be scrolled if the player wants to read the instructions again or add wrong input in the game and see the instructions.
 
 - The game accepts users input for player name and selecting cell (Row & Column) and or mine choice.
 
@@ -151,6 +158,7 @@ Anyone can play this game and there is no specific target audience for the game.
     - You cannot flag more than 8 flags.
     - If you put the above it will show an error and also display the instructions again to player to read.
     - The current feature does not prompt if a cell is already displaying a number (chosen cell) and it just skips to a new grid with new input. This will be an update to add to the future feature version.
+    - If you have chosen a flag but you just add the row and column co-ordinates, then the flag will change to an actual number (or mine!!!) if you changed your mind.
 
 ![Input flag no space error](https://github.com/manasi1031/minesweeper/blob/main/assets/images/input-flag-no-space-error.jpg)
 
@@ -171,6 +179,8 @@ Anyone can play this game and there is no specific target audience for the game.
 - Time limits or recording time in general taken to play.
 - Level of difficulty – Easy, Medium and Hard.
 - If a value is already provided on grid, then state that its there and try again by highlighting the section view.
+- After instructions are displayed, to add an option whether to begin playing game or still read instructions again.
+
 
 ![Grid on deployed site](https://github.com/manasi1031/minesweeper/blob/main/assets/images/grid.jpg)
 
